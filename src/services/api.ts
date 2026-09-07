@@ -8,7 +8,7 @@ export async function api(
 ) {
 
   const headers: Record<string, string> = {};
-  if (API_KEY) headers.Authorization = API_KEY;
+  if (API_KEY) headers["X-API-KEY"] = API_KEY;
 
   const options: RequestInit = {
     method,

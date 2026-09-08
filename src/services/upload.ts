@@ -9,7 +9,7 @@ export async function uploadImage(file: File) {
         {
             method: "POST",
             headers: {
-                "Authorization": import.meta.env.API_KEY
+                "X-API-KEY": import.meta.env.API_KEY
             },
             body: formData,
         }

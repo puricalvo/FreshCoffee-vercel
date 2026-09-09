@@ -18,7 +18,7 @@ export async function createOrder(
 ) {
 
     return await api(
-        `externas?table=orders&token=${encodeURIComponent(token)}&tableToken=customers&suffix=customer&suffix_module=order`,
+        `externas?table=orders&token=${token}&tableToken=customers&suffix=customer&suffix_module=order`,
         "POST",
         {
             name_order: data.name,

@@ -144,44 +144,32 @@ export const orders = {
 
                 }
 
-                let response;
+                const response =
+                    await createTestOrder(
+                        {
+                            adminName:
+                                input.adminName.trim(),
 
-                try {
-                    response =
-                        await createTestOrder(
-                            {
-                                adminName:
-                                    input.adminName.trim(),
+                            phone:
+                                input.phone,
 
-                                phone:
-                                    input.phone,
+                            deliveryMethod:
+                                input.deliveryMethod,
 
-                                deliveryMethod:
-                                    input.deliveryMethod,
+                             deliveryLocality:
+                                input.deliveryLocality,
 
-                                deliveryLocality:
-                                    input.deliveryLocality,
+                            paymentMethod:
+                                input.paymentMethod,
 
-                                paymentMethod:
-                                    input.paymentMethod,
+                            deliveryAddress:
+                                input.deliveryAddress,
 
-                                deliveryAddress:
-                                    input.deliveryAddress,
-
-                                order:
-                                    input.order
-                            },
-                            token
-                        );
-                } catch (error) {
-                    throw new ActionError({
-                        message:
-                            error instanceof Error
-                                ? error.message
-                                : "No se pudo crear el pedido de prueba",
-                        code: "BAD_REQUEST"
-                    });
-                }
+                            order:
+                                input.order
+                        },
+                        token
+                    );
 
                 return {
 
@@ -206,37 +194,25 @@ export const orders = {
              * que utilizaba el cliente.
              */
 
-            let response;
+            const response =
+                await createOrder(
+                    {
+                        name: input.name,
+                        phone: input.phone,
+                        deliveryMethod:
+                            input.deliveryMethod,
+                        deliveryLocality:
+                            input.deliveryLocality,
 
-            try {
-                response =
-                    await createOrder(
-                        {
-                            name: input.name,
-                            phone: input.phone,
-                            deliveryMethod:
-                                input.deliveryMethod,
-                            deliveryLocality:
-                                input.deliveryLocality,
-
-                            paymentMethod:
-                                input.paymentMethod,
-                            deliveryAddress:
-                                input.deliveryAddress,
-                            order:
-                                input.order
-                        },
-                        token
-                    );
-            } catch (error) {
-                throw new ActionError({
-                    message:
-                        error instanceof Error
-                            ? error.message
-                            : "No se pudo crear el pedido",
-                    code: "BAD_REQUEST"
-                });
-            }
+                        paymentMethod:
+                            input.paymentMethod,
+                        deliveryAddress:
+                            input.deliveryAddress,
+                        order:
+                            input.order
+                    },
+                    token
+                );
 
             return {
 

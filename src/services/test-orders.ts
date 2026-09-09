@@ -18,7 +18,7 @@ export async function createTestOrder(
 ) {
 
     return await api(
-        `externas?table=test_orders&token=${token}&tableToken=admins&suffix=admin&suffix_module=test_order`,
+        `externas?table=test_orders&token=${encodeURIComponent(token)}&tableToken=admins&suffix=admin&suffix_module=test_order`,
         "POST",
         {
             name_test_order: "PRUEBA",

@@ -144,32 +144,44 @@ export const orders = {
 
                 }
 
-                const response =
-                    await createTestOrder(
-                        {
-                            adminName:
-                                input.adminName.trim(),
+                let response;
 
-                            phone:
-                                input.phone,
+                try {
+                    response =
+                        await createTestOrder(
+                            {
+                                adminName:
+                                    input.adminName.trim(),
 
-                            deliveryMethod:
-                                input.deliveryMethod,
+                                phone:
+                                    input.phone,
 
-                             deliveryLocality:
-                                input.deliveryLocality,
+                                deliveryMethod:
+                                    input.deliveryMethod,
 
-                            paymentMethod:
-                                input.paymentMethod,
+                                deliveryLocality:
+                                    input.deliveryLocality,
 
-                            deliveryAddress:
-                                input.deliveryAddress,
+                                paymentMethod:
+                                    input.paymentMethod,
 
-                            order:
-                                input.order
-                        },
-                        token
-                    );
+                                deliveryAddress:
+                                    input.deliveryAddress,
+
+                                order:
+                                    input.order
+                            },
+                            token
+                        );
+                } catch (error) {
+                    throw new ActionError({
+                        message:
+                            error instanceof Error
+                                ? error.message
+                                : "No se pudo crear el pedido de prueba",
+                        code: "BAD_REQUEST"
+                    });
+                }
 
                 return {
 
@@ -194,25 +206,37 @@ export const orders = {
              * que utilizaba el cliente.
              */
 
-            const response =
-                await createOrder(
-                    {
-                        name: input.name,
-                        phone: input.phone,
-                        deliveryMethod:
-                            input.deliveryMethod,
-                        deliveryLocality:
-                            input.deliveryLocality,
+            let response;
 
-                        paymentMethod:
-                            input.paymentMethod,
-                        deliveryAddress:
-                            input.deliveryAddress,
-                        order:
-                            input.order
-                    },
-                    token
-                );
+            try {
+                response =
+                    await createOrder(
+                        {
+                            name: input.name,
+                            phone: input.phone,
+                            deliveryMethod:
+                                input.deliveryMethod,
+                            deliveryLocality:
+                                input.deliveryLocality,
+
+                            paymentMethod:
+                                input.paymentMethod,
+                            deliveryAddress:
+                                input.deliveryAddress,
+                            order:
+                                input.order
+                        },
+                        token
+                    );
+            } catch (error) {
+                throw new ActionError({
+                    message:
+                        error instanceof Error
+                            ? error.message
+                            : "No se pudo crear el pedido",
+                    code: "BAD_REQUEST"
+                });
+            }
 
             return {
 

@@ -49,5 +49,19 @@ export async function api(
     };
   }
 
-  return JSON.parse(text);
+  const data = JSON.parse(text);
+
+  // La API puede responder HTTP 200 con un error en su campo `status`.
+  if (
+    typeof data.status === "number" &&
+    (data.status < 200 || data.status >= 300)
+  ) {
+    throw new Error(
+      typeof data.results === "string"
+        ? data.results
+        : `Error ${data.status}`
+    );
+  }
+
+  return data;
 } 

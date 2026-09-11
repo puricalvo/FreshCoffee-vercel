@@ -29,42 +29,43 @@ export const onRequest = defineMiddleware(async (ctx, next) => {
     }
 
     // =====================================
-    // COMPROBAR ESTADO DEL ADMINISTRADOR
-    // =====================================
+// COMPROBAR ESTADO DEL ADMINISTRADOR
+// =====================================
 
-    if (
-        ["superadmin", "admin", "editor"].includes(user.role) &&
-        user.status === false
-    ) {
+if (
+    ["superadmin", "admin", "editor"].includes(user.role) &&
+    user.status === false
+) {
 
-        ctx.cookies.delete("FRESHCOFFEE_TOKEN", {
-            path: "/",
-        });
+    const loginUrl = new URL("/auth/login", ctx.url);
 
+    return new Response(null, {
+        status: 302,
+        headers: {
+            "Location": loginUrl.toString(),
+            "Set-Cookie":
+                "FRESHCOFFEE_TOKEN=; Path=/; HttpOnly; SameSite=Strict; Max-Age=0"
+        }
+    });
+}
+
+ctx.locals.user = user;
+
+if (isAdminRoute) {
+
+    const allowedRoles = [
+        "superadmin",
+        "admin",
+        "editor"
+    ];
+
+    if (!allowedRoles.includes(user.role)) {
         return Response.redirect(
-            new URL("/auth/login", ctx.url),
+            new URL("/", ctx.url),
             302
         );
     }
+}
 
-    ctx.locals.user = user;
-
-    if (isAdminRoute) {
-
-        const allowedRoles = [
-            "superadmin",
-            "admin",
-            "editor"
-        ];
-
-        if (!allowedRoles.includes(user.role)) {
-            return Response.redirect(
-                new URL("/", ctx.url),
-                302
-            );
-        }
-    }
-
-    return next();
+return next();
 });
-

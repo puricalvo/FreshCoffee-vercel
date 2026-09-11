@@ -47,7 +47,8 @@ export async function verifySession(token: string) {
                     user: {
                         id: data.id_admin,
                         role: data.rol_admin,
-                        email: data.email_admin
+                        email: data.email_admin,
+                        status: Number(data.status_admin) === 1
                     }
                 };
 
@@ -102,8 +103,7 @@ export async function verifySession(token: string) {
                     user: {
                         id: data.id_customer,
                         role: "freshcoffee_customer",
-                        email: data.email_customer
-                    }
+                        email: data.email_customer                    }
                 };
 
             }

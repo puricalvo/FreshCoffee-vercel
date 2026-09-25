@@ -39,7 +39,7 @@ export async function verifySession(token: string) {
                     admin.token_admin === token
             );
 
-           
+
 
             if (data) {
 
@@ -103,8 +103,7 @@ export async function verifySession(token: string) {
                     user: {
                         id: data.id_customer,
                         role: "freshcoffee_customer",
-                        email: data.email_customer
-                    }
+                        email: data.email_customer                    }
                 };
 
             }

@@ -4,23 +4,21 @@ export async function uploadImage(file: File) {
 
     formData.append("file", file);
 
-    const response = await fetch(
-        `${import.meta.env.API_URL}media`,
-        {
-            method: "POST",
-            headers: {
-                "Authorization": import.meta.env.API_KEY
-            },
-            body: formData,
-        }
-    );
+    const apiUrl = `${import.meta.env.API_URL}`.replace(/\/$/, "");
+    const response = await fetch(`${apiUrl}/media`, {
+        method: "POST",
+        headers: {
+            "X-API-KEY": import.meta.env.API_KEY
+        },
+        body: formData,
+    });
 
-    const data = await response.json();
+    const data = await response.json().catch(() => null);
 
-    if (data.status !== 200) {
+    if (!response.ok || data?.status !== 200) {
 
         throw new Error(
-            data.results ?? "Error al subir la imagen"
+            data?.results ?? `Error al subir la imagen (${response.status})`
         );
 
     }

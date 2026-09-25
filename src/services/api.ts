@@ -1,5 +1,5 @@
 const API_URL = import.meta.env.API_URL ?? '/api/';
-const API_KEY = import.meta.env.API_KEY ?? '';
+const API_KEY = (import.meta.env.API_KEY ?? '').trim();
 
 export async function api(
   endpoint: string,
@@ -8,7 +8,10 @@ export async function api(
 ) {
 
   const headers: Record<string, string> = {};
-  if (API_KEY) headers.Authorization = API_KEY;
+  if (API_KEY) {
+    headers["X-API-KEY"] = API_KEY;
+    headers.Authorization = API_KEY;
+  }
 
   const options: RequestInit = {
     method,

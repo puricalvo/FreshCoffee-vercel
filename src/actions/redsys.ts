@@ -53,7 +53,7 @@ export const redsys = {
                         method: "POST",
 
                         headers: {
-                            "X-API-KEY": API_KEY,
+                            "Authorization": API_KEY,
                             "Content-Type": "application/json"
                         },
 
@@ -165,7 +165,7 @@ export const redsys = {
                         method: "POST",
 
                         headers: {
-                            "X-API-KEY": API_KEY,
+                            "Authorization": API_KEY,
                             "Content-Type": "application/json"
                         },
 

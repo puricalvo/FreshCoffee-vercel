@@ -25,9 +25,7 @@ export const upload = {
             } catch (error) {
 
                 throw new ActionError({
-                    message: error instanceof Error
-                        ? error.message
-                        : "Hubo un error al subir la imagen",
+                    message: "Hubo un error al subir la imagen",
                     code: "BAD_REQUEST"
                 });
 

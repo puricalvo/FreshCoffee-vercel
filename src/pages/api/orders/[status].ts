@@ -66,7 +66,7 @@ export const GET: APIRoute = async ({ params, cookies }) => {
         `${import.meta.env.API_URL}orders?linkTo=status_order&equalTo=${status}`,
         {
             headers: {
-                "X-API-KEY": import.meta.env.API_KEY
+                Authorization: import.meta.env.API_KEY
             }
         }
     );

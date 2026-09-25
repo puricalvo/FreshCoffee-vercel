@@ -137,7 +137,7 @@ export const auth = {
                 {
                     method: "POST",
                     headers: {
-                        "X-API-KEY": import.meta.env.API_KEY,
+                        "Authorization": import.meta.env.API_KEY,
                         "Content-Type": "application/x-www-form-urlencoded",
                     },
                     body
@@ -236,7 +236,7 @@ export const auth = {
                 {
                     method: "POST",
                     headers: {
-                        "X-API-KEY": import.meta.env.API_KEY,
+                        "Authorization": import.meta.env.API_KEY,
                         "Content-Type": "application/x-www-form-urlencoded"
                     },
                     body
@@ -301,7 +301,7 @@ export const auth = {
                 {
                     method: "POST",
                     headers: {
-                        "X-API-KEY": import.meta.env.API_KEY,
+                        "Authorization": import.meta.env.API_KEY,
                         "Content-Type": "application/x-www-form-urlencoded"
                     },
                     body
@@ -310,7 +310,6 @@ export const auth = {
 
 
             const json = await res.json();
-
 
 
            if(json.status === 200) {

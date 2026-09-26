@@ -41,6 +41,12 @@ export const products = {
 
                 [`image_${suffix}`]: input.image,
 
+                [`description_${suffix}`]: input.description,
+
+                [`ingredients_${suffix}`]: input.ingredients.join(", "),
+
+                [`allergens_${suffix}`]: input.allergens.join(", "),
+
                 [`price_${suffix}`]:
                     input.variable_price === "true"
                         ? JSON.stringify(input.variants)
@@ -92,6 +98,12 @@ export const products = {
                 [`title_${suffix}`]: input.title,
 
                 [`image_${suffix}`]: input.image,
+
+                [`description_${suffix}`]: input.description,
+
+                [`ingredients_${suffix}`]: input.ingredients.join(", "),
+
+                [`allergens_${suffix}`]: input.allergens.join(", "),
 
                 [`price_${suffix}`]:
                     input.variable_price === "true"
